@@ -1,8 +1,8 @@
 import math
 import matplotlib.pyplot as plt
-from .Generaldistribution import Distribution
+from .Generaldistribution import statman
 
-class Gaussian(Distribution):
+class Gaussian(statman):
 	""" Gaussian distribution class for calculating and 
 	visualizing a Gaussian distribution.
 	
@@ -14,7 +14,7 @@ class Gaussian(Distribution):
 	"""
 	def __init__(self, mu=0, sigma=1):
 		
-		Distribution.__init__(self, mu, sigma)
+		statman.__init__(self, mu, sigma)
 
 	
 	def calculate_mean(self):
