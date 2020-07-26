@@ -236,7 +236,21 @@ class Binomial(statman):
 
         #   This method should also return the x and y values used to make the chart
         #   The x and y values should be stored in separate lists
+        k_list = [:n]
+        pdf_k_list = []
+        for k in k_list
+            if k < n:
+                k_pdf = pdf(k)
+                pdf_k_list.append(k_pdf)
+                k+=1
+        plt.bar(k_list, pdf_k_list)
+        plt.title('A Probability density function chart of a range of K values')
+        plt.xlabel('The list of k values')
+        plt.ylabel('PDF of instances')
         
+        return k_list, pdf_k_list
+
+
                 
     def __add__(self, other):
         
@@ -249,6 +263,7 @@ class Binomial(statman):
             Binomial: Binomial distribution
             
         """
+        
         
         try:
             assert self.p == other.p, 'p values are not equal'
@@ -268,6 +283,13 @@ class Binomial(statman):
         
         #   When adding two binomial distributions, the p value remains the same
         #   The new n value is the sum of the n values of the two distributions.
+        result = Binomial()
+        result.n = self.n + other.n
+        result.p = self.p
+        result.mean = self.mean + other.mean
+		result.stdev = math.sqrt(self.stdev ** 2 + other.stdev ** 2)
+
+        return result
                 
         pass
         
