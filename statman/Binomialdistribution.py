@@ -47,8 +47,10 @@ class Binomial(statman):
         #               farther down in the code starting in line 55. 
         #               The init function can get access to these methods via the self
         #               variable.  
+        statman.__init__(self, mean, stdev)
         self.p = p
-        self.n = n 
+        self.n = n
+         
         pass            
     
     def calculate_mean(self):
@@ -65,13 +67,12 @@ class Binomial(statman):
         
         # TODO: calculate the mean of the Binomial distribution. Store the mean
         #       via the self variable and also return the new mean value
-        mean = self.p * self.n
+        mean = 1.0 * self.p * self.n
 
         self.mean = mean
 
-        return mean       
-        pass 
-
+        return mean
+        pass
 
 
     def calculate_stdev(self):
@@ -89,6 +90,11 @@ class Binomial(statman):
         # TODO: calculate the standard deviation of the Binomial distribution. Store
         #       the result in the self standard deviation attribute. Return the value
         #       of the standard deviation.
+
+        stdev = sqrt(self.p * self.n * (1.0 - self.p))
+
+        self.stdev = stdev
+        return stdev
         pass
         
         
@@ -123,6 +129,11 @@ class Binomial(statman):
         #
         #       Hint: You can use the calculate_mean() and calculate_stdev() methods
         #           defined previously.
+
+        mean = calculate_mean()
+        stdev = calculate_stdev()
+        self.mean = mean
+        self.stdev = stdev
         pass
         
     def plot_bar(self):
