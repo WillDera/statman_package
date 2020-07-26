@@ -171,7 +171,7 @@ class Binomial(statman):
         pass        
         
         plt.bar(self.data, width=0.8, align=centre)
-		plt.title('Diagramatic Representation of Instances')
+		plt.title('Diagramatic representation of instances')
 		plt.xlabel('Instances')
 		plt.ylabel('Probability')
     def pdf(self, k):
@@ -208,7 +208,9 @@ class Binomial(statman):
 
         factorial_all = factorial_n / (factorial_k - factorial_n_k)
 
-        pdf = 
+        pdf = factorial_all * (self.p**2) * ((1.0 - self.p)**n_k)
+
+        return pdf
         pass        
 
     def plot_bar_pdf(self):
@@ -234,6 +236,7 @@ class Binomial(statman):
 
         #   This method should also return the x and y values used to make the chart
         #   The x and y values should be stored in separate lists
+        
                 
     def __add__(self, other):
         
