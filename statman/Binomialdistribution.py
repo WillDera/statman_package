@@ -139,7 +139,7 @@ class Binomial(statman):
                 pos.append(data)
                 i+=1
         
-        p = len(pos)
+        p = len(pos) / len(self.data)
 
         self.p = p
 
@@ -170,6 +170,10 @@ class Binomial(statman):
         #       Make sure to label the chart with a title, x-axis label and y-axis label
         pass        
         
+        plt.bar(self.data, width=0.8, align=centre)
+		plt.title('Diagramatic Representation of Instances')
+		plt.xlabel('Instances')
+		plt.ylabel('Probability')
     def pdf(self, k):
         """Probability density function calculator for the gaussian distribution.
         
@@ -188,7 +192,23 @@ class Binomial(statman):
         # 
         #   For example, if you flip a coin n = 60 times, with p = .5,
         #   what's the likelihood that the coin lands on heads 40 out of 60 times?
+        def factorial(num):
+            # Python program to find the factorial of a number provided by the user.
+                      
+            factorial = 1
+            
+            for i in range(1,num + 1):
+                factorial = factorial*i
+                return factorial
         
+        factorial_n = factorial(self.n)
+        factorial_k = factorial(k)
+        n_k = n - k
+        factorial_n_k = factorial(n_k)
+
+        factorial_all = factorial_n / (factorial_k - factorial_n_k)
+
+        pdf = 
         pass        
 
     def plot_bar_pdf(self):
