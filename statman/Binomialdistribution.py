@@ -70,7 +70,6 @@ class Binomial(statman):
         self.mean = mean
 
         return mean
-        pass
 
 
     def calculate_stdev(self):
@@ -93,7 +92,6 @@ class Binomial(statman):
 
         self.stdev = stdev
         return stdev
-        pass
         
         
         
@@ -132,7 +130,21 @@ class Binomial(statman):
         stdev = self.calculate_stdev()
         self.mean = mean
         self.stdev = stdev
-        pass
+        n = len(self.data)
+        self.n = n
+        i = 0
+        pos = []
+        for data in self.data:
+            if data == 1:
+                pos.append(data)
+                i+=1
+        
+        p = len(pos)
+
+        self.p = p
+
+        return p, n
+        
         
     def plot_bar(self):
         """Function to output a histogram of the instance variable data using 
