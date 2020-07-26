@@ -1,6 +1,18 @@
 import math
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+import random
 from .Generaldistribution import statman
+
+# import seaborn
+import seaborn as sns
+# settings for seaborn plotting style
+sns.set(color_codes=True)
+# settings for seaborn plot sizes
+sns.set(rc={'figure.figsize':(5,5)})
+
+from scipy.stats import binom
+
+
 
 class Binomial(statman):
     """ Binomial distribution class for calculating and 
@@ -157,7 +169,7 @@ class Binomial(statman):
             None
         """
             
-        # TODO: Use the matplotlib package to plot a bar chart of the data
+        # TODO: Use the matplotlib/seaborn package to plot a bar chart of the data
         #       The x-axis should have the value zero or one
         #       The y-axis should have the count of results for each case
         #
@@ -168,7 +180,18 @@ class Binomial(statman):
         #       1 on the x-axis and 20 on the y-axis
         
         #       Make sure to label the chart with a title, x-axis label and y-axis label
-        pass        
+        
+        p, n = self.replace_stats_with_data()
+        seed = random.seed(42)
+        binom_data = binom.rvs(n, p, size=seed)
+        
+        # Visualizing the distribution with seaborns displot
+        ax = sns.distplot(binom_data, kde=False, color="green", hist_kws={"linewidth": 15, 'alpha': 1})
+        plot = ax.set(xlabel="Binomial Distribution", ylabel="Frequency")
+        
+        self.plot = plot
+        
+        return plot
         
     def pdf(self, k):
         """Probability density function calculator for the gaussian distribution.
