@@ -311,5 +311,7 @@ class Binomial(statman):
         #
         #       with the values replaced by whatever the actual distributions values are
         #       The method should return a string in the expected format
+
+        return "mean {}, standard deviation {}, p {}, n {}".format(self.mean, self.stdev, self.p, self.n)
     
         pass
