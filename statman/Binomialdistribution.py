@@ -140,9 +140,10 @@ class Binomial(statman):
         for data in self.data:
             if data == 1:
                 pos.append(data)
-                i += 1
-
-        p = len(pos)
+                
+                i+=1
+        
+        p = len(pos) / len(self.data)
 
         self.p = p
 
@@ -178,12 +179,12 @@ class Binomial(statman):
         # Visualizing the distribution with seaborns displot
         ax = sns.distplot(binom_data, kde=False, color="green",
                           hist_kws={"linewidth": 15, 'alpha': 1})
-        plot = ax.set(xlabel="Binomial Distribution", ylabel="Frequency")
+        plot = ax.set(xlabel="Instances", ylabel="Probability")
 
         self.plot = plot
 
         return plot
-
+      
     def pdf(self, k):
         """Probability density function calculator for the gaussian distribution.
 
@@ -202,8 +203,26 @@ class Binomial(statman):
         #
         #   For example, if you flip a coin n = 60 times, with p = .5,
         #   what's the likelihood that the coin lands on heads 40 out of 60 times?
+        
+        def factorial(num):
+            # Python program to find the factorial of a number provided by the user.
+                      
+            factorial = 1
+            
+            for i in range(1,num + 1):
+                factorial = factorial*i
+                return factorial
+        
+        factorial_n = factorial(self.n)
+        factorial_k = factorial(k)
+        n_k = n - k
+        factorial_n_k = factorial(n_k)
 
-        pass
+        factorial_all = factorial_n / (factorial_k - factorial_n_k)
+
+        pdf = factorial_all * (self.p**2) * ((1.0 - self.p)**n_k)
+
+        return pdf
 
     def plot_bar_pdf(self):
         """Function to plot the pdf of the binomial distribution
@@ -228,6 +247,21 @@ class Binomial(statman):
         #   This method should also return the x and y values used to make the chart
         #   The x and y values should be stored in separate lists
 
+        k_list = [:n]
+        pdf_k_list = []
+        for k in k_list
+            if k < n:
+                k_pdf = pdf(k)
+                pdf_k_list.append(k_pdf)
+                k+=1
+        plt.bar(k_list, pdf_k_list)
+        plt.title('A Probability density function chart of a range of K values')
+        plt.xlabel('The list of k values')
+        plt.ylabel('PDF of instances')
+        
+        return k_list, pdf_k_list
+
+      
     def __add__(self, other):
         """Function to add together two Binomial distributions with equal p
 
@@ -258,7 +292,14 @@ class Binomial(statman):
         #   When adding two binomial distributions, the p value remains the same
         #   The new n value is the sum of the n values of the two distributions.
 
-        pass
+        result = Binomial()
+        result.n = self.n + other.n
+        result.p = self.p
+        result.mean = self.mean + other.mean
+		result.stdev = math.sqrt(self.stdev ** 2 + other.stdev ** 2)
+
+        return result
+
 
     def __repr__(self):
         """Function to output the characteristics of the Binomial instance
