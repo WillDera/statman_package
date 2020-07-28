@@ -1,5 +1,6 @@
 import math
 from scipy.stats import poisson
+from random import seed
 from ..Generaldistribution import statman
 
 # import seaborn
@@ -16,9 +17,9 @@ class Poisson(statman):
         visualizing a Poisson distribution
     """
 
-    def __init__(self, mu=0.6):
+    def __init__(self, mu=0):
 
-        statman.__init__(self, mu)
+        statman.__init__(self)
 
         # constant
         self.e = 2.718282
@@ -31,37 +32,65 @@ class Poisson(statman):
                 None
 
             Returns:
-                Float: mean of the data set.
+                mean (float): mean.
+                kurt (float): kurtosis.
         """
 
-        m, v, skew, kurt = poisson.stats(mu, moments='mvsk')
+        mean, variance, skew, kurt = poisson.stats(mu, moments='mvsk')
 
-        mean = m
+        return self.mean, self.kurt
 
-        return mean
-
-    def calculate_probability(self, u, x):
+    def calculate_probability(self, x):
         """
             Function to calculate the poisson probability of an occurance
 
             Args:
-                e, 
-                u = mean of the dataset
-                x = expected occurance in a time frame
+                e = the poisson constant, 
+                x = expected occurance over a certain period
 
             Returns:
                 float: probability of the occurance of x
 
         """
 
-        x_factorial = math.factorial(self.x)
-        e_negativeu = self.e ** -u
+        e = self.e
+        mu = self.calculate_mean()[0]
 
-        possion_prob = e_negativeu * u ** x / x_factorial
+        x_factorial = math.factorial(x)
+        e_negativeu = e ** -mu
+
+        possion_prob = e_negativeu * mu ** x / x_factorial
+
+        self.possion_prob = possion_prob
 
         return possion_prob
 
-    def pmf(self, mu, k):
+    def plot_bar(self):
+        """
+            Function to output a histogram of the instance variable data using 
+            seaborn library.
+
+            Args:
+                None
+
+            Returns:
+                None
+        """
+
+        mu = self.calculate_mean()[0]
+        s = seed(42)
+        data_poisson = poisson.rvs(mu, size=seed)
+
+        # sns distplot
+        ax = sns.distplot(data_poisson, bins=30, kde=False, color='green',
+                          hist_kws={"linewidth": 15, "alpha": 1})
+        plot = ax.set(xlabel="Instances", ylabel="Probability")
+
+        self.plot = plot
+
+        return plot
+
+    def pmf(self):
         """
             Probability mass function calculation for poisson distribution
 
@@ -72,6 +101,8 @@ class Poisson(statman):
             Returns:
                 float: probability mass function output
         """
+
+        mu, k = self.calculate_mean()
 
         k_factorial = math.factorial(k)
         m_exp = math.exp(-mu)
