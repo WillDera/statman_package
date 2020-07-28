@@ -1,5 +1,13 @@
 import math
+from scipy.stats import poisson
 from ..Generaldistribution import statman
+
+# import seaborn
+import seaborn as sns
+# settings for seaborn plotting style
+sns.set(color_codes=True)
+# settings for seaborn plot sizes
+sns.set(rc={'figure.figsize': (5, 5)})
 
 
 class Poisson(statman):
@@ -26,9 +34,9 @@ class Poisson(statman):
                 Float: mean of the data set.
         """
 
-        avg = 1.0 * sum(self.data) / len(self.data)
+        m, v, skew, kurt = poisson.stats(mu, moments='mvsk')
 
-        self.mean = avg
+        mean = m
 
         return mean
 
@@ -47,8 +55,15 @@ class Poisson(statman):
         """
 
         x_factorial = math.factorial(self.x)
-        e_negativeu = self.e ^ -u
+        e_negativeu = self.e ** -u
 
-        possion_prob = e_negativeu * u ^ x / x_factorial
+        possion_prob = e_negativeu * u ** x / x_factorial
 
         return possion_prob
+
+    def pmf(self, mu, k):
+
+        k_factorial = math.factorial(k)
+        m_exp = math.exp(-mu)
+
+        return (m_exp * mu**k / k_factorial)
