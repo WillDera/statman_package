@@ -51,4 +51,4 @@ class Poisson(statman):
 
         possion_prob = e_negativeu * u ^ x / x_factorial
 
-        return
+        return possion_prob
