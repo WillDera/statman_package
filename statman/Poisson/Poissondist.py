@@ -62,6 +62,16 @@ class Poisson(statman):
         return possion_prob
 
     def pmf(self, mu, k):
+        """
+            Probability mass function calculation for poisson distribution
+
+            Args:
+                mu (list): shape parameter for calculating the probability mass function
+                k (float): kurtosis returned from the poisson.stats()
+
+            Returns:
+                float: probability mass function output
+        """
 
         k_factorial = math.factorial(k)
         m_exp = math.exp(-mu)
