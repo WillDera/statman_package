@@ -15,6 +15,13 @@ class Poisson(statman):
     """
         Poisson distribution class for calculating and
         visualizing a Poisson distribution
+
+        Attributes:
+            mean (float) representing the mean value of the distribution,
+            variance/var (float) representing the variance of the distribution,
+            e (float) representing Euler's number,
+            p (float) representing the probability of an occurance
+            x (int) number of occurrences
     """
 
     def __init__(self, mu=0):
@@ -32,21 +39,25 @@ class Poisson(statman):
                 None
 
             Returns:
-                mean (float): mean.
-                kurt (float): kurtosis.
+                float: the mean value,
+                float: the kurtosis value.
         """
 
         mean, variance, skew, kurt = poisson.stats(mu, moments='mvsk')
 
-        return self.mean, self.kurt
+        self.mean = mean
+        self.variance = variance
+        self.kurt = kurt
+
+        return mean, kurt, variance
 
     def calculate_probability(self, x):
         """
             Function to calculate the poisson probability of an occurance
 
             Args:
-                e = the poisson constant, 
-                x = expected occurance over a certain period
+                e = Euler's number, 
+                x = number of occurrences
 
             Returns:
                 float: probability of the occurance of x
@@ -62,6 +73,7 @@ class Poisson(statman):
         possion_prob = e_negativeu * mu ** x / x_factorial
 
         self.possion_prob = possion_prob
+        self.x = x
 
         return possion_prob
 
@@ -108,3 +120,22 @@ class Poisson(statman):
         m_exp = math.exp(-mu)
 
         return (m_exp * mu**k / k_factorial)
+
+    def __repr__(self):
+        """
+            Function to output characteristics of the poisson instance
+
+            Args:
+                None
+
+            Returns:
+                string: characteristics of the Poisson
+        """
+
+        mean = self.mean
+        var = self.kurt
+        e = self.e
+        p = self.possion_prob()
+        x = self.x
+
+        return ("mean: %s, variance: %s, e: %s, p: %s, x: %s" % (mean, var, e, p, s))
