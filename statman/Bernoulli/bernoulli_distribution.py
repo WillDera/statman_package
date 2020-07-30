@@ -21,11 +21,30 @@ class Bernoulli(statman):
             Coming Soon...
     """
 
-    def __init__(self):
+    def __init__(self, p=0.3):
 
         statman.__init__(self)
 
+        self.p = p
+
     def calculate_mean(self):
         """
+            Function to get the mean of the data set.
+
+            Args: 
+                None
+
+            Returns:
+                float: the mean value
 
         """
+
+        p = self.p
+
+        mean, variance, skew, kurt = bernoulli.stats(p, moments='mvsk')
+
+        self.mean = mean
+
+        return mean
+
+    def calculate_probability():

@@ -3,7 +3,7 @@ from scipy.stats import poisson
 from random import seed
 from ..Generaldistribution import statman
 
-# import seaborn and set up seaborn
+# import and setup seaborn
 import seaborn as sns
 # settings for seaborn plotting style
 sns.set(color_codes=True)
@@ -33,7 +33,7 @@ class Poisson(statman):
 
     def calculate_mean(self):
         """
-            Function to calculate the mean of the data set.
+            Function to get the mean of the data set.
 
             Args:
                 None
