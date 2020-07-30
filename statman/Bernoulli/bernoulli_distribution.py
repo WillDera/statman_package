@@ -47,4 +47,15 @@ class Bernoulli(statman):
 
         return mean
 
-    def calculate_probability():
+    def calculate_probability(self):
+        """
+            Function to calculate the possibility of an outcome 
+
+            Args:
+                n = number of trials
+                p = probability of success
+                q = probability of failure
+
+            Returns:
+                x (float) = number of success
+        """
