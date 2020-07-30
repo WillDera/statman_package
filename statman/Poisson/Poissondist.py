@@ -3,7 +3,7 @@ from scipy.stats import poisson
 from random import seed
 from ..Generaldistribution import statman
 
-# import seaborn
+# import seaborn and set up seaborn
 import seaborn as sns
 # settings for seaborn plotting style
 sns.set(color_codes=True)
