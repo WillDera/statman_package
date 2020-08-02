@@ -31,7 +31,7 @@ class Poisson(statman):
         # constant
         self.e = 2.718282
 
-    def calculate_mean(self):
+    def get_mean_kurt_variance(self):
         """
             Function to get the mean of the data set.
 
@@ -65,7 +65,7 @@ class Poisson(statman):
         """
 
         e = self.e
-        mu = self.calculate_mean()[0]
+        mu = self.get_mean_kurt_variance()[0]
 
         n_factorial = math.factorial(n)
         e_negativeu = e ** -mu
@@ -89,7 +89,7 @@ class Poisson(statman):
                 None
         """
 
-        mu = self.calculate_mean()[0]
+        mu = self.get_mean_kurt_variance()[0]
         s = seed(42)
         data_poisson = poisson.rvs(mu, size=seed)
 
@@ -114,7 +114,7 @@ class Poisson(statman):
                 float: probability mass function output
         """
 
-        mu, k = self.calculate_mean()
+        mu, k = self.get_mean_kurt_variance()
 
         k_factorial = math.factorial(k)
         m_exp = math.exp(-mu)
