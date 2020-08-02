@@ -62,16 +62,27 @@ class Bernoulli(statman):
         #       the result in the self standard deviation attribute. Return the value
         #       of the standard deviation.
 
-    def combination(self):
+    def combination(self, n, x):
         """
             Function to perform the mathematical combination operation
 
             Args:
                 n = number of independent trials
                 x = number of successful outcomes
+
+            Returns:
+                c =  combination of n and x
         """
 
-        # TODO: write logic to perfom the combination operation on n and x
+        n_factorial = math.factorial(n)
+        x_factorial = math.factorial(x)
+        diff = n - x
+        diff_factorial = math.factorial(diff)
+
+        c = n_factorial / diff_factorial * x_factorial
+
+        self.c = c
+        return c
 
     def calculate_probability(self):
         """
