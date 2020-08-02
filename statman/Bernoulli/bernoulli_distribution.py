@@ -73,12 +73,12 @@ class Bernoulli(statman):
     def calculate_probability(self, x):
         """
             Function to calculate the possibility of an outcome 
-
-            Args:
                 n = number of trials
                 p = probability of success
                 q = probability of failure
-                x (float) = number of success
+
+            Args:
+                x (float) = number of positive outcomes
 
             Returns:
                 prob_of_x (float) = probability of x 
@@ -116,3 +116,18 @@ class Bernoulli(statman):
 
         self.stdev = stdev
         return stdev
+
+    def pdf(self):
+        """
+            Probability density function calculator for the bernoulli distribution.
+
+            Args:
+                None
+
+            Returns:
+                float: probability density function output 
+        """
+
+        pdf = (1.0 / (self.stdev * math.sqrt(2*math.pi))) * \
+            math.exp(-0.5*((self.x - self.mean) / self.stdev) ** 2)
+        return pdf
