@@ -94,10 +94,6 @@ class Bernoulli(statman):
         n = self.n
         self.x = x
 
-        # TODO: calculate the probability of x. Store
-        #       the result in the self probability of x attribute. Return the value
-        #       of the probability.
-
         comb = self.combination(n, x)
         p_squared = (p)**2
         q_squared = (q)**2
@@ -114,10 +110,6 @@ class Bernoulli(statman):
             float: standard deviation of the data set
 
         """
-
-        # TODO: calculate the standard deviation of the Bernoulli distribution. Store
-        #       the result in the self standard deviation attribute. Return the value
-        #       of the standard deviation.
 
         q = 1.0 - self.p
         stdev = math.sqrt(self.n * self.p * (q))
