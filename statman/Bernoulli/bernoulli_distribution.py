@@ -131,3 +131,45 @@ class Bernoulli(statman):
         pdf = (1.0 / (self.stdev * math.sqrt(2*math.pi))) * \
             math.exp(-0.5*((self.x - self.mean) / self.stdev) ** 2)
         return pdf
+
+    def plot_bar(self):
+        """
+            Function to output a histogram of the bernoulli instance variable data using 
+            seaborn library.
+
+            Args:
+                None
+
+            Returns:
+                seaborn distplot for the bernoulli distribution
+        """
+        s = seed(42)
+
+        data_bern = bernoulli.rvs(size=seed, p=self.p)
+
+        ax = sns.distplot(data_bern, kde=False, color='green',
+                          hist_kws={"linewidth": 15, "alpha": 1})
+        plot = ax.set(xlabel="Instances", ylabel="Frequency")
+
+        self.plot = plot
+        return plot
+
+    def __repr__(self):
+        """
+            Function to output characteristics of the bernoulli instance
+
+            Args:
+                None
+
+            Returns:
+                string: characteristics of the Bernoulli
+        """
+
+        mean = self.mean
+        stdev = self.stdev
+        n = self.n
+        p = self.p
+        q = 1 - p
+        x = self.x
+
+        return ("Mean: %s \n Standard Deviation: %s \n n(number of independent trials): %s \n p(probability of success): %s \n q(probability of failure): %s \n x(number of successful outcomes): %s" % (mean, stdev, n, p, q, x))
