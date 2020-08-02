@@ -21,7 +21,7 @@ class Bernoulli(statman):
             Coming Soon...
     """
 
-    def __init__(self, p=0.3):
+    def __init__(self, p=0.7):
 
         statman.__init__(self)
 
@@ -71,20 +71,21 @@ class Bernoulli(statman):
                 x = number of successful outcomes
 
             Returns:
-                c =  combination of n and x
+                comb =  combination of n and x
         """
+        self.n = n
 
         n_factorial = math.factorial(n)
         x_factorial = math.factorial(x)
         diff = n - x
         diff_factorial = math.factorial(diff)
 
-        c = n_factorial / diff_factorial * x_factorial
+        comb = n_factorial / (diff_factorial * x_factorial)
 
-        self.c = c
-        return c
+        self.comb = comb
+        return comb
 
-    def calculate_probability(self):
+    def calculate_probability(self, x):
         """
             Function to calculate the possibility of an outcome 
 
@@ -92,13 +93,28 @@ class Bernoulli(statman):
                 n = number of trials
                 p = probability of success
                 q = probability of failure
-
-            Returns:
                 x (float) = number of success
 
+            Returns:
+                prob_of_x (float) = probability of x 
 
+            Scenario:
+                If a basketball player takes 8 independent free throws, with
+                a probability of 0.7 of getting a basket on each shot, what
+                is the probability that she gets exactly 6 baskets?
         """
+
+        p = self.p
+        q = 1 - p
+        n = self.n
+        self.x = x
 
         # TODO: calculate the probability of x. Store
         #       the result in the self probability of x attribute. Return the value
         #       of the probability.
+
+        comb = self.combination(n, x)
+        p_squared = (p)**2
+        q_squared = (q)**2
+
+        prob_of_x = (comb * p_squared * q_squared)
