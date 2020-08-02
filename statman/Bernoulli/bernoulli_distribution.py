@@ -47,21 +47,6 @@ class Bernoulli(statman):
 
         return mean
 
-    def calculate_stdev(self):
-        """Function to calculate the standard deviation from p and n.
-
-        Args: 
-            None
-
-        Returns: 
-            float: standard deviation of the data set
-
-        """
-
-        # TODO: calculate the standard deviation of the Bernoulli distribution. Store
-        #       the result in the self standard deviation attribute. Return the value
-        #       of the standard deviation.
-
     def combination(self, n, x):
         """
             Function to perform the mathematical combination operation
@@ -105,7 +90,7 @@ class Bernoulli(statman):
         """
 
         p = self.p
-        q = 1 - p
+        q = 1.0 - p
         n = self.n
         self.x = x
 
@@ -118,3 +103,24 @@ class Bernoulli(statman):
         q_squared = (q)**2
 
         prob_of_x = (comb * p_squared * q_squared)
+
+    def calculate_stdev(self):
+        """Function to calculate the standard deviation from p and n.
+
+        Args: 
+            None
+
+        Returns: 
+            float: standard deviation of the data set
+
+        """
+
+        # TODO: calculate the standard deviation of the Bernoulli distribution. Store
+        #       the result in the self standard deviation attribute. Return the value
+        #       of the standard deviation.
+
+        q = 1.0 - self.p
+        stdev = math.sqrt(self.n * self.p * (q))
+
+        self.stdev = stdev
+        return stdev
