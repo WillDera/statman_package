@@ -21,7 +21,7 @@ class Poisson(statman):
             variance/var (float) representing the variance of the distribution,
             e (float) representing Euler's number,
             p (float) representing the probability of an occurance
-            x (int) number of occurrences
+            n (int) number of occurrences
     """
 
     def __init__(self, mu=0):
@@ -51,29 +51,29 @@ class Poisson(statman):
 
         return mean, kurt, variance
 
-    def calculate_probability(self, x):
+    def calculate_probability(self, n):
         """
             Function to calculate the poisson probability of an occurance
 
             Args:
                 e = Euler's number, 
-                x = number of occurrences
+                n = number of occurrences
 
             Returns:
-                float: probability of the occurance of x
+                float: probability of the occurance of n
 
         """
 
         e = self.e
         mu = self.calculate_mean()[0]
 
-        x_factorial = math.factorial(x)
+        n_factorial = math.factorial(n)
         e_negativeu = e ** -mu
 
-        possion_prob = e_negativeu * mu ** x / x_factorial
+        possion_prob = e_negativeu * mu ** n / n_factorial
 
         self.possion_prob = possion_prob
-        self.x = x
+        self.n = n
 
         return possion_prob
 
@@ -136,6 +136,6 @@ class Poisson(statman):
         var = self.kurt
         e = self.e
         p = self.possion_prob()
-        x = self.x
+        n = self.n
 
-        return ("mean: %s, variance: %s, e: %s, p: %s, x: %s" % (mean, var, e, p, s))
+        return ("mean: %s, variance: %s, e: %s, p: %s, n: %s" % (mean, var, e, p, n))
