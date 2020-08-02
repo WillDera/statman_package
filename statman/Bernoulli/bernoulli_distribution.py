@@ -18,7 +18,11 @@ class Bernoulli(statman):
         visualizing a Bernoulli distribution
 
         Attributes:
-            Coming Soon...
+            mean (float) - mean value of the distribution
+            n (int) - number of independent trials
+            p (float) - probability of success
+            q (float) - probability of failure
+            x (int) - number of successful outcomes
     """
 
     def __init__(self, p=0.7):
@@ -73,7 +77,7 @@ class Bernoulli(statman):
     def calculate_probability(self, x):
         """
             Function to calculate the possibility of an outcome 
-                n = number of trials
+                n = number of independent trials
                 p = probability of success
                 q = probability of failure
 
