@@ -140,9 +140,9 @@ class Binomial(statman):
         for data in self.data:
             if data == 1:
                 pos.append(data)
-                
-                i+=1
-        
+
+                i += 1
+
         p = len(pos) / len(self.data)
 
         self.p = p
@@ -184,7 +184,7 @@ class Binomial(statman):
         self.plot = plot
 
         return plot
-      
+
     def pdf(self, k):
         """Probability density function calculator for the gaussian distribution.
 
@@ -203,16 +203,16 @@ class Binomial(statman):
         #
         #   For example, if you flip a coin n = 60 times, with p = .5,
         #   what's the likelihood that the coin lands on heads 40 out of 60 times?
-        
+
         def factorial(num):
             # Python program to find the factorial of a number provided by the user.
-                      
+
             factorial = 1
-            
-            for i in range(1,num + 1):
+
+            for i in range(1, num + 1):
                 factorial = factorial*i
                 return factorial
-        
+
         factorial_n = factorial(self.n)
         factorial_k = factorial(k)
         n_k = n - k
@@ -249,19 +249,18 @@ class Binomial(statman):
 
         k_list = [:n]
         pdf_k_list = []
-        for k in k_list
+        for k in k_list:
             if k < n:
                 k_pdf = pdf(k)
                 pdf_k_list.append(k_pdf)
-                k+=1
+                k += 1
         plt.bar(k_list, pdf_k_list)
         plt.title('A Probability density function chart of a range of K values')
         plt.xlabel('The list of k values')
         plt.ylabel('PDF of instances')
-        
+
         return k_list, pdf_k_list
 
-      
     def __add__(self, other):
         """Function to add together two Binomial distributions with equal p
 
@@ -296,10 +295,9 @@ class Binomial(statman):
         result.n = self.n + other.n
         result.p = self.p
         result.mean = self.mean + other.mean
-		result.stdev = math.sqrt(self.stdev ** 2 + other.stdev ** 2)
+        result.stdev = math.sqrt(self.stdev ** 2 + other.stdev ** 2)
 
         return result
-
 
     def __repr__(self):
         """Function to output the characteristics of the Binomial instance
