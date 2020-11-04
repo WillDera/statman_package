@@ -149,42 +149,42 @@ class Binomial(statman):
 
         return p, n
 
-    def plot_bar(self):
-        """Function to output a histogram of the instance variable data using 
-        matplotlib pyplot library.
+    # def plot_bar(self):
+    #     """Function to output a histogram of the instance variable data using
+    #     matplotlib pyplot library.
 
-        Args:
-            None
+    #     Args:
+    #         None
 
-        Returns:
-            None
-        """
+    #     Returns:
+    #         None
+    #     """
 
-        # TODO: Use the matplotlib/seaborn package to plot a bar chart of the data
-        #       The x-axis should have the value zero or one
-        #       The y-axis should have the count of results for each case
-        #
-        #       For example, say you have a coin where heads = 1 and tails = 0.
-        #       If you flipped a coin 35 times, and the coin landed on
-        #       heads 20 times and tails 15 times, the bar chart would have two bars:
-        #       0 on the x-axis and 15 on the y-axis
-        #       1 on the x-axis and 20 on the y-axis
+    #     # TODO: Use the matplotlib/seaborn package to plot a bar chart of the data
+    #     #       The x-axis should have the value zero or one
+    #     #       The y-axis should have the count of results for each case
+    #     #
+    #     #       For example, say you have a coin where heads = 1 and tails = 0.
+    #     #       If you flipped a coin 35 times, and the coin landed on
+    #     #       heads 20 times and tails 15 times, the bar chart would have two bars:
+    #     #       0 on the x-axis and 15 on the y-axis
+    #     #       1 on the x-axis and 20 on the y-axis
 
-        #       Make sure to label the chart with a title, x-axis label and y-axis label
+    #     #       Make sure to label the chart with a title, x-axis label and y-axis label
 
-        p, n = self.replace_stats_with_data()
-        #seed = random.seed(42)
-        binom = self.data
-        binom_data = binom.(n, p, size=random.seed(42))
+    #     p, n = self.replace_stats_with_data()
+    #     #seed = random.seed(42)
+    #     binom = self.data
+    #     binom_data = binom.(n, p, size=random.seed(42))
 
-        # Visualizing the distribution with seaborns displot
-        ax = sns.distplot(binom_data, kde=False, color="green",
-                          hist_kws={"linewidth": 15, 'alpha': 1})
-        plot = ax.set(xlabel="Instances", ylabel="Probability")
+    #     # Visualizing the distribution with seaborns displot
+    #     ax = sns.distplot(binom_data, kde=False, color="green",
+    #                       hist_kws={"linewidth": 15, 'alpha': 1})
+    #     plot = ax.set(xlabel="Instances", ylabel="Probability")
 
-        self.plot = plot
+    #     self.plot = plot
 
-        return plot
+    #     return plot
 
     def pdf(self, k):
         """Probability density function calculator for the gaussian distribution.
