@@ -176,7 +176,7 @@ class Gaussian(statman):
         """Function to add together two Gaussian distributions
 
         Args:
-                other (Gaussian): Gaussian instance
+                other (Gaussian): A Gaussian instance
 
         Returns:
                 Gaussian: Gaussian distribution
