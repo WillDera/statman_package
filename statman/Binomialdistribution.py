@@ -173,8 +173,9 @@ class Binomial(statman):
         #       Make sure to label the chart with a title, x-axis label and y-axis label
 
         p, n = self.replace_stats_with_data()
-        seed = random.seed(42)
-        binom_data = binom.rvs(n, p, size=seed)
+        #seed = random.seed(42)
+        binom = self.data
+        binom_data = binom.(n, p, size=random.seed(42))
 
         # Visualizing the distribution with seaborns displot
         ax = sns.distplot(binom_data, kde=False, color="green",
@@ -213,6 +214,7 @@ class Binomial(statman):
                 factorial = factorial*i
                 return factorial
 
+        n = self.n
         factorial_n = factorial(self.n)
         factorial_k = factorial(k)
         n_k = n - k
@@ -247,7 +249,8 @@ class Binomial(statman):
         #   This method should also return the x and y values used to make the chart
         #   The x and y values should be stored in separate lists
 
-        k_list = [:n]
+        k_list = self.data
+        n = len(self.data)
         pdf_k_list = []
         for k in k_list:
             if k < n:
@@ -315,10 +318,4 @@ class Binomial(statman):
         #
         #       with the values replaced by whatever the actual distributions values are
         #       The method should return a string in the expected format
-
-<<<<<<< HEAD
         return "mean {}, standard deviation {}, p {}, n {}".format(self.mean, self.stdev, self.p, self.n)
-    
-=======
->>>>>>> 4217f41b4147bb3b9ba12190e2918380f6741899
-        pass

@@ -8,5 +8,4 @@ statman/__init__.py
 statman.egg-info/PKG-INFO
 statman.egg-info/SOURCES.txt
 statman.egg-info/dependency_links.txt
-statman.egg-info/not-zip-safe
 statman.egg-info/top_level.txt
